@@ -11,8 +11,27 @@ var Main = React.createClass({
     return (this.state.player === this.state.game.current_player && !this.state.winningPlayer);
   },
 
-  newGame(){
+  componentDidMount(){
+    var that = this;
+    setInterval(() => {
+      that.getCurrentGameState();
+    }, 1000);
+  },
 
+  getCurrentGameState(){
+    var gameId = this.props.game.id;
+    $.ajax({
+        url: '/api/v1/games/' + gameId,
+        type: 'GET',
+        data: { new_move: {pos: this.props.pos, player: this.props.player} },
+        success: (reply) => {
+          this.updateGameState(reply);
+          console.log("Updated Game State");
+        },
+        error: (error) => {
+          console.log("Failed update state");
+        }
+    });
   },
 
   endGameMessage(){
