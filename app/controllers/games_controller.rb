@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   def show
     @player = session[:game]["player"]
+    @game = Game.find(session[:game]["game_id"])
   end
 
   def update

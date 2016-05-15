@@ -1,11 +1,17 @@
 var Cell = React.createClass({
   getInitialState(){
-    return {move: 0};
+    return {move: this.cellData()};
   },
 
+  cellData(){
+    var board = this.props.game.board;
+    var row = this.props.pos[0];
+    var col = this.props.pos[1];
+    return board[row][col];
+  },
 
   madeMoveOrMakeMove(){
-    if (this.state.move === 0){
+    if (this.state.move === "empty"){
       return <div>{this.makeMoveButton()}</div>;
     } else {
       return <div className="move">{this.state.move}</div>;
@@ -13,7 +19,7 @@ var Cell = React.createClass({
   },
 
   handleMove(){
-    this.setState({move: this.props.player});
+    this.setState({ move: this.props.player });
   },
 
   makeMoveButton(){
