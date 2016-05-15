@@ -13,4 +13,9 @@ class GamesController < ApplicationController
     g.update_attributes(player => true)
     redirect_to game_path(g.id)
   end
+
+  def destroy
+    Game.find(session[:game]["game_id"]).destroy
+    redirect_to root_path
+  end
 end

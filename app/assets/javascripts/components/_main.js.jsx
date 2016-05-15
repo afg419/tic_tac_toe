@@ -11,13 +11,17 @@ var Main = React.createClass({
     return (this.state.player === this.state.game.current_player);
   },
 
+  newGame(){
+
+  },
+
   endGameMessage(){
     if (this.state.winningPlayer === "x"){
-      return <div>Player X has won! <button>Play again?</button></div>;
+      return <div>Player X has won! <a href='/play_again'>Play again?</a></div>;
     } else if(this.state.winningPlayer === "o"){
-      return <div>Player O has won! <button>Play again?</button></div>;
+      return <div>Player O has won! <a href='/play_again'>Play again?</a></div>;
     } else if(this.state.winningPlayer === "draw") {
-      return <div>Game is a draw! <button>Play again?</button></div>;
+      return <div>Game is a draw! <a href='/play_again'>Play again?</a></div>;
     } else {
       return <div></div>;
     }

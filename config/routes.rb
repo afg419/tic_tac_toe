@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   post 'join/:player' => 'games#update'
+  get 'play_again' => 'games#destroy'
 
   resources :games, only: [:show]
 
