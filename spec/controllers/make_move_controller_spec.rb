@@ -11,7 +11,7 @@ RSpec.describe Api::V1::GamesController, type: :controller do
     game.reload
 
     expect(response.status).to eq 200
-    expect(reply["board"][1][1]).to eq "x"
+    expect(reply["game"]["board"][1][1]).to eq "x"
     expect(game.board[1][1]).to eq "x"
   end
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::GamesController, type: :controller do
     reply = JSON.parse(response.body)
     game.reload
 
-    expect(reply["current_player"]).to eq "o"
+    expect(reply["game"]["current_player"]).to eq "o"
     expect(game.current_player).to eq "o"
   end
 

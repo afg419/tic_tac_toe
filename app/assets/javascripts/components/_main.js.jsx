@@ -1,20 +1,33 @@
 var Main = React.createClass({
   getInitialState(){
-    return {player: this.props.player, game: this.props.game};
+    return {player: this.props.player, game: this.props.game, winningPlayer: this.props.winningPlayer};
   },
 
   updateGameState(reply){
-    this.setState({game: reply}, () => {console.log("change state");});
+    this.setState({game: reply.game, winningPlayer: reply.winning_player}, () => {console.log("change state");});
   },
 
   active(){
     return (this.state.player === this.state.game.current_player);
   },
 
+  endGameMessage(){
+    if (this.state.winningPlayer === "x"){
+      return <div>Player X has won! <button>Play again?</button></div>;
+    } else if(this.state.winningPlayer === "o"){
+      return <div>Player O has won! <button>Play again?</button></div>;
+    } else if(this.state.winningPlayer === "draw") {
+      return <div>Game is a draw! <button>Play again?</button></div>;
+    } else {
+      return <div></div>;
+    }
+  },
+
   render() {
     return (
       <div className="game container">
         <h3>Current player: {this.state.game.current_player.toUpperCase()}</h3>
+        <h3>{this.endGameMessage()}</h3>
         <table className="game-board">
           <tbody>
             <tr>

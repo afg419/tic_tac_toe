@@ -1,4 +1,4 @@
 Playing as <%= @player.upcase %>'s
 Waiting on <%= other_player(@player).upcase %>'s player
 
-<%= react_component( 'Main', {game: @game, player: @player} ) %>
+<%= react_component( 'Main', {game: @game, player: @player, winningPlayer: @winning_player} ) %>

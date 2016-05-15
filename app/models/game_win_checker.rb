@@ -34,6 +34,12 @@ class GameWinChecker
     [check_diagonals_for_win, check_rows_for_win, check_columns_for_win].flatten.compact[0]
   end
 
+  def draw?
+    if !board.flatten.include?("empty")
+      "draw"
+    end
+  end
+
   def winning_array?(array)
     if array[0] === array[1] && array[1] == array[2] && array[2] != "empty"
       array[2]

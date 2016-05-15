@@ -2,6 +2,8 @@ class GamesController < ApplicationController
   def show
     @player = session[:game]["player"]
     @game = Game.find(session[:game]["game_id"])
+    gwc = GameWinChecker.new(@game.board)
+    @winning_player = gwc.win? || gwc.draw?
   end
 
   def update
