@@ -1,16 +1,28 @@
 var Cell = React.createClass({
+  getInitialState(){
+    return {move: 0};
+  },
 
-  // madeMoveOrMakeMove(){
-  //
-  // },
+
+  madeMoveOrMakeMove(){
+    if (this.state.move === 0){
+      return <div>{this.makeMoveButton()}</div>;
+    } else {
+      return <div className="move">{this.state.move}</div>;
+    }
+  },
+
+  handleMove(){
+    this.setState({move: this.props.player});
+  },
 
   makeMoveButton(){
-    return <button onClick={this.handleMove}>{this.props.player}</button>;
+    return <button className="make-move" onClick={this.handleMove}>{this.props.player}</button>;
   },
 
   render() {
     return (
-      <div>{this.props.pos} {this.makeMoveButton()}</div>
+      <div>{this.madeMoveOrMakeMove()}</div>
     );
   }
 });

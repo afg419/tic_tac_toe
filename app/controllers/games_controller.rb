@@ -1,10 +1,13 @@
 class GamesController < ApplicationController
   def show
-    @player = session[:player]
+    @player = session[:game]["player"]
   end
 
   def update
-    session[:player] = params[:player]
-    redirect_to game_path(1)
+    player = params[:player]
+    g = Game.find_or_create_by(title: "MVP Game")
+    session[:game] = {game_id: g.id, player: player}
+    g.update_attributes(player => true, current_player: "x")
+    redirect_to game_path(g.id)
   end
 end

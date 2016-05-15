@@ -5,15 +5,25 @@ RSpec.feature "Game board and functionality", type: :feature do
     visit root_path
     click_on "Join as X's"
     expect(current_path).to eq '/games/1'
-    # expect(page).to have_css "game-board"
-    expect(page).to have_content "00"
-    expect(page).to have_content "01"
-    expect(page).to have_content "02"
-    expect(page).to have_content "10"
-    expect(page).to have_content "11"
-    expect(page).to have_content "12"
-    expect(page).to have_content "20"
-    expect(page).to have_content "21"
-    expect(page).to have_content "22"
+    expect(page).to have_css ".cell-00"
+    expect(page).to have_css ".cell-01"
+    expect(page).to have_css ".cell-02"
+    expect(page).to have_css ".cell-10"
+    expect(page).to have_css ".cell-11"
+    expect(page).to have_css ".cell-12"
+    expect(page).to have_css ".cell-20"
+    expect(page).to have_css ".cell-21"
+    expect(page).to have_css ".cell-22"
+  end
+
+  scenario "root has join buttons", js: true do
+    visit root_path
+    click_on "Join as X's"
+    within(".cell-00") do
+      expect(page).to have_css ".make-move"
+      click_on "x"
+      expect(page).to_not have_css ".make-move"
+      expect(page).to have_css ".move"
+    end
   end
 end
