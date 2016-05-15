@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Api::V1::GamesController, type: :controller do
   it "player makes a move" do
     game = Game.create(x: true, current_player: "x")
+    ApplicationController.any_instance.stubs(:current_game).returns(game)
+    ApplicationController.any_instance.stubs(:current_player).returns("x")
     move_params = {"new_move" => {"pos"=>["1", "1"], "player"=>"x"}, "id" => game.id}
 
     patch :update, move_params
@@ -17,6 +19,8 @@ RSpec.describe Api::V1::GamesController, type: :controller do
 
   it "changes players after move" do
     game = Game.create(x: true, current_player: "x")
+    ApplicationController.any_instance.stubs(:current_game).returns(game)
+    ApplicationController.any_instance.stubs(:current_player).returns("x")
     move_params = {"new_move" => {"pos"=>["1", "1"], "player"=>"x"}, "id" => game.id}
 
     patch :update, move_params
@@ -30,6 +34,8 @@ RSpec.describe Api::V1::GamesController, type: :controller do
 
   it "wont move if not players turn" do
     game = Game.create(x: true, current_player: "x")
+    ApplicationController.any_instance.stubs(:current_game).returns(game)
+    ApplicationController.any_instance.stubs(:current_player).returns("x")
     move_params = {"new_move" => {"pos"=>["1", "1"], "player"=>"o"}, "id" => game.id}
 
     patch :update, move_params
@@ -47,6 +53,8 @@ RSpec.describe Api::V1::GamesController, type: :controller do
              ["empty", "o","empty"],
              ["empty", "empty", "empty"]]
     game = Game.create(x: true, current_player: "x", board: board)
+    ApplicationController.any_instance.stubs(:current_game).returns(game)
+    ApplicationController.any_instance.stubs(:current_player).returns("x")
 
     move_params = {"new_move" => {"pos"=>["1", "1"], "player"=>"x"}, "id" => game.id}
 

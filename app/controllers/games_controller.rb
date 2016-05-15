@@ -15,7 +15,9 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    Game.find(session[:game]["game_id"]).destroy
+    current_game.destroy if current_game
+    session[:game] = {}
+
     redirect_to root_path
   end
 end

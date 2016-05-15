@@ -36,7 +36,7 @@ var Cell = React.createClass({
 
   makeMoveButton(){
     if(this.props.active){
-      return <button className="cell-button make-move" onClick={this.handleMove}>x</button>;
+      return <button className="cell-button make-move" onClick={this.handleMove}>{this.props.player}</button>;
     } else {
       return <button className="cell-button inactive-move" disabled></button>;
     }

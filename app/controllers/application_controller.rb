@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :other_player
 
+  def current_game
+    Game.find_by(id: session[:game]["game_id"]) if session[:game]["game_id"]
+  end
+
+  def current_player
+    session[:game]["player"] if session[:game]["player"]
+  end
+
   def other_player(player)
     (["x", "o"] - [player])[0]
   end

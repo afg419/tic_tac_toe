@@ -8,7 +8,7 @@ var Main = React.createClass({
   },
 
   active(){
-    return (this.state.player === this.state.game.current_player);
+    return (this.state.player === this.state.game.current_player && !this.state.winningPlayer);
   },
 
   newGame(){

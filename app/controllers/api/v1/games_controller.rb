@@ -1,9 +1,9 @@
 class Api::V1::GamesController < ApplicationController
 
   def update
-    game = Game.find(params["id"].to_i)
+    game = current_game
+    player = current_player
     pos = params["new_move"]["pos"].map(&:to_i)
-    player = params["new_move"]["player"]
     if game && game.current_player == player && game.board[pos[0]][pos[1]] == "empty"
       game.board[pos[0]][pos[1]] = player
       game.current_player = other_player(game.current_player)
@@ -14,5 +14,9 @@ class Api::V1::GamesController < ApplicationController
     else
       render json: {error: "no game, not your turn, or that spot's been taken already"}
     end
+  end
+
+  def show
+
   end
 end
