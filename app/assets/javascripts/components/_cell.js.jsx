@@ -1,6 +1,6 @@
 var Cell = React.createClass({
   getInitialState(){
-    return {move: this.cellData()};
+    return {};
   },
 
   cellData(){
@@ -11,10 +11,10 @@ var Cell = React.createClass({
   },
 
   madeMoveOrMakeMove(){
-    if (this.state.move === "empty"){
+    if (this.cellData() === "empty"){
       return <div>{this.makeMoveButton()}</div>;
     } else {
-      return <div className="move">{this.state.move}</div>;
+      return <div className="move">{this.cellData()}</div>;
     }
   },
 
@@ -26,7 +26,6 @@ var Cell = React.createClass({
         data: { new_move: {pos: this.props.pos, player: this.props.player} },
         success: (reply) => {
           this.props.updateGameState(reply);
-          // this.setState({ move: this.props.player });
           console.log("Made a move");
         },
         error: (error) => {

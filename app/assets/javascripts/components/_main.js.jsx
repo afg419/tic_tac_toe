@@ -1,11 +1,10 @@
 var Main = React.createClass({
   getInitialState(){
-    debugger
     return {player: this.props.player, game: this.props.game};
   },
 
   updateGameState(reply){
-    this.setState({game: reply});
+    this.setState({game: reply}, () => {console.log("change state");});
   },
 
   render() {
@@ -17,7 +16,7 @@ var Main = React.createClass({
               <td className={"cell-00"}>
                 <Cell
                               pos={[0,0]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -25,7 +24,7 @@ var Main = React.createClass({
               <td className={"cell-01"}>
                 <Cell
                               pos={[0,1]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -33,7 +32,7 @@ var Main = React.createClass({
               <td className={"cell-02"}>
                 <Cell
                               pos={[0,2]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -43,7 +42,7 @@ var Main = React.createClass({
               <td className={"cell-10"}>
                 <Cell
                               pos={[1,0]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -51,7 +50,7 @@ var Main = React.createClass({
               <td className={"cell-11"}>
                 <Cell
                               pos={[1,1]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -59,7 +58,7 @@ var Main = React.createClass({
               <td className={"cell-12"}>
                 <Cell
                               pos={[1,2]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -69,7 +68,7 @@ var Main = React.createClass({
               <td className={"cell-20"}>
                 <Cell
                               pos={[2,0]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -77,7 +76,7 @@ var Main = React.createClass({
               <td className={"cell-21"}>
                 <Cell
                               pos={[2,1]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
@@ -85,7 +84,7 @@ var Main = React.createClass({
               <td className={"cell-22"}>
                 <Cell
                               pos={[2,2]}
-                             game={this.props.game}
+                             game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
                 />
