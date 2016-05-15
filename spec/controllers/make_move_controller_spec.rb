@@ -33,7 +33,7 @@ RSpec.describe Api::V1::GamesController, type: :controller do
   end
 
   it "wont move if not players turn" do
-    game = Game.create(x: true, current_player: "x")
+    game = Game.create(x: true, current_player: "o")
     ApplicationController.any_instance.stubs(:current_game).returns(game)
     ApplicationController.any_instance.stubs(:current_player).returns("x")
     move_params = {"new_move" => {"pos"=>["1", "1"], "player"=>"o"}, "id" => game.id}
@@ -44,7 +44,7 @@ RSpec.describe Api::V1::GamesController, type: :controller do
     game.reload
 
     expect(reply["error"]).to eq "no game, not your turn, or that spot's been taken already"
-    expect(game.current_player).to eq "x"
+    expect(game.current_player).to eq "o"
     expect(game.board[1][1]).to eq "empty"
   end
 
@@ -62,7 +62,6 @@ RSpec.describe Api::V1::GamesController, type: :controller do
 
     reply = JSON.parse(response.body)
     game.reload
-
     expect(reply["error"]).to eq "no game, not your turn, or that spot's been taken already"
     expect(game.current_player).to eq "x"
     expect(game.board[1][1]).to eq "o"
