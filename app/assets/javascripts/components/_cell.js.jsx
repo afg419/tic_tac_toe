@@ -19,7 +19,20 @@ var Cell = React.createClass({
   },
 
   handleMove(){
-    this.setState({ move: this.props.player });
+    var gameId = this.props.game.id;
+    $.ajax({
+        url: '/api/v1/games/' + gameId,
+        type: 'PATCH',
+        data: { new_move: {pos: this.props.pos, player: this.props.player} },
+        success: (reply) => {
+          this.setState({ move: this.props.player });
+          console.log("Made a move");
+        },
+        error: (error) => {
+          debugger
+          console.log("Failed to make a move");
+        }
+    });
   },
 
   makeMoveButton(){

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   resources :games, only: [:show]
 
+  namespace :api do
+    namespace :v1 do
+      resources :games, only: [:update]
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
