@@ -7,9 +7,14 @@ var Main = React.createClass({
     this.setState({game: reply}, () => {console.log("change state");});
   },
 
+  active(){
+    return (this.state.player === this.state.game.current_player);
+  },
+
   render() {
     return (
       <div className="game container">
+        <h3>Current player: {this.state.game.current_player.toUpperCase()}</h3>
         <table className="game-board">
           <tbody>
             <tr>
@@ -19,6 +24,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
               <td className={"cell-01"}>
@@ -27,6 +33,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
               <td className={"cell-02"}>
@@ -35,6 +42,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
             </tr>
@@ -45,6 +53,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
               <td className={"cell-11"}>
@@ -53,6 +62,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
               <td className={"cell-12"}>
@@ -61,6 +71,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
             </tr>
@@ -71,6 +82,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
               <td className={"cell-21"}>
@@ -79,6 +91,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
               <td className={"cell-22"}>
@@ -87,6 +100,7 @@ var Main = React.createClass({
                              game={this.state.game}
                            player={this.state.player}
                   updateGameState={this.updateGameState}
+                           active={this.active()}
                 />
               </td>
             </tr>

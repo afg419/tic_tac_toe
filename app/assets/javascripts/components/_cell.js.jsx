@@ -14,7 +14,7 @@ var Cell = React.createClass({
     if (this.cellData() === "empty"){
       return <div>{this.makeMoveButton()}</div>;
     } else {
-      return <div className="move">{this.cellData()}</div>;
+      return <button className="cell-button move" disabled>{this.cellData()}</button>;
     }
   },
 
@@ -29,14 +29,17 @@ var Cell = React.createClass({
           console.log("Made a move");
         },
         error: (error) => {
-          debugger
           console.log("Failed to make a move");
         }
     });
   },
 
   makeMoveButton(){
-    return <button className="make-move" onClick={this.handleMove}>{this.props.player}</button>;
+    if(this.props.active){
+      return <button className="cell-button make-move" onClick={this.handleMove}></button>;
+    } else {
+      return <button className="cell-button inactive-move" disabled></button>;
+    }
   },
 
   render() {
