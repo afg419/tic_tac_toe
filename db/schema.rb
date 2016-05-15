@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20160515184326) do
     t.string   "title",          default: "MVP Game"
     t.boolean  "x",              default: false
     t.boolean  "o",              default: false
-    t.string   "current_player"
+    t.string   "current_player", default: "x"
     t.string   "board",          default: [["empty", "empty", "empty"], ["empty", "empty", "empty"], ["empty", "empty", "empty"]],              array: true
     t.datetime "created_at",                                                                                                       null: false
     t.datetime "updated_at",                                                                                                       null: false

@@ -25,7 +25,8 @@ var Cell = React.createClass({
         type: 'PATCH',
         data: { new_move: {pos: this.props.pos, player: this.props.player} },
         success: (reply) => {
-          this.setState({ move: this.props.player });
+          this.props.updateGameState(reply);
+          // this.setState({ move: this.props.player });
           console.log("Made a move");
         },
         error: (error) => {

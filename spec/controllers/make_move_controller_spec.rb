@@ -59,5 +59,4 @@ RSpec.describe Api::V1::GamesController, type: :controller do
     expect(game.current_player).to eq "x"
     expect(game.board[1][1]).to eq "o"
   end
-
 end

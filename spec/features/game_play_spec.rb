@@ -4,7 +4,8 @@ RSpec.feature "Game board and functionality", type: :feature do
   scenario "root has join buttons", js: true do
     visit root_path
     click_on "Join as X's"
-    expect(current_path).to eq '/games/1'
+    g = Game.first
+    expect(current_path).to eq "/games/#{g.id}"
     expect(page).to have_css ".cell-00"
     expect(page).to have_css ".cell-01"
     expect(page).to have_css ".cell-02"
